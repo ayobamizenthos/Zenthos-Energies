@@ -26,6 +26,23 @@ export interface SolarRecommendation {
   monthlyGenerationKwh: number
 }
 
+const MOTOR_KEYWORDS = [
+  'air conditioner',
+  ' ac',
+  'pump',
+  'fridge',
+  'refrigerator',
+  'freezer',
+  'washing',
+  'microwave',
+  'compressor',
+]
+
+function surgeFactor(name: string): number {
+  const normalized = ` ${name.toLowerCase()}`
+  return MOTOR_KEYWORDS.some(keyword => normalized.includes(keyword)) ? 3 : 1
+}
+
 export function computeRecommendation(loads: ApplianceLoad[]): SolarRecommendation {
   const dailyLoadWh = loads.reduce((sum, item) => sum + item.watts * item.hours * item.quantity, 0)
   const peakPowerW = loads.reduce((sum, item) => sum + item.watts * item.quantity, 0)
@@ -33,7 +50,13 @@ export function computeRecommendation(loads: ApplianceLoad[]): SolarRecommendati
   const batteryCapacityWh = dailyLoadWh * BATTERY_BUFFER
   const batteryAh = batteryCapacityWh / (SYSTEM_VOLTAGE * BATTERY_DOD)
 
-  const inverterSizeKva = Math.max(1, (peakPowerW * INVERTER_HEADROOM) / 1000 / 0.8)
+  // Inverter must handle every load running plus the inrush of the largest motor starting.
+  const largestMotorSurge = loads.reduce(
+    (max, item) => Math.max(max, item.watts * (surgeFactor(item.name) - 1)),
+    0
+  )
+  const inverterPeakW = (peakPowerW + largestMotorSurge) * INVERTER_HEADROOM
+  const inverterSizeKva = Math.max(1, inverterPeakW / 1000 / 0.8)
 
   const panelArrayW = dailyLoadWh > 0 ? (dailyLoadWh / LAGOS_PEAK_SUN_HOURS) * 1.2 : 0
   const panelCount = Math.ceil(panelArrayW / PANEL_WATT)
