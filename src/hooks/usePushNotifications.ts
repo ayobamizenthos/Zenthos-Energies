@@ -27,12 +27,12 @@ export function usePushNotifications() {
   }, [supported])
 
   const subscribe = useCallback(async () => {
-    if (!supported || !session || !VAPID_PUBLIC_KEY) return
+    if (!supported || !session) return
     setBusy(true)
     try {
       const permission = await Notification.requestPermission()
       setState(permission as PushState)
-      if (permission !== 'granted') return
+      if (permission !== 'granted' || !VAPID_PUBLIC_KEY) return
 
       const registration = await navigator.serviceWorker.ready
       const existing = await registration.pushManager.getSubscription()
@@ -53,6 +53,8 @@ export function usePushNotifications() {
         },
         { onConflict: 'user_id,endpoint' }
       )
+    } catch {
+      // permission granted; web-push enrolment is best-effort and in-app alerts still fire
     } finally {
       setBusy(false)
     }
