@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { MessageCircle, Minus, Plus, Trash2, Zap } from 'lucide-react'
+import { Check, MessageCircle, Minus, Plus, Trash2, Zap } from 'lucide-react'
 import { computeRecommendation, recommendProducts, type ApplianceLoad } from '@/lib/solar'
 import { APPLIANCES } from '@/lib/appliances'
 import { STORE } from '@/lib/constants'
@@ -44,9 +44,6 @@ export default function CalculatorPage() {
   const recommended = useMemo(() => recommendProducts(products, loads), [products, loads])
   const hasLoad = recommendation.dailyLoadWh > 0
 
-  const countFor = (name: string) =>
-    rows.filter(row => row.name === name).reduce((sum, row) => sum + num(row.quantity), 0)
-
   const toggleAppliance = (name: string) => {
     const preset = APPLIANCES.find(item => item.name === name)
     setRows(prev => {
@@ -66,15 +63,6 @@ export default function CalculatorPage() {
       ]
     })
   }
-
-  const decrement = (name: string) =>
-    setRows(prev =>
-      prev.flatMap(row => {
-        if (row.name !== name) return [row]
-        const next = num(row.quantity) - 1
-        return next <= 0 ? [] : [{ ...row, quantity: String(next) }]
-      })
-    )
 
   const update = (id: string, patch: Partial<ApplianceRow>) =>
     setRows(prev => prev.map(row => (row.id === id ? { ...row, ...patch } : row)))
@@ -131,7 +119,7 @@ export default function CalculatorPage() {
 
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
           {APPLIANCES.map(item => {
-            const count = countFor(item.name)
+            const selected = rows.some(row => row.name === item.name)
             return (
               <div key={item.name} className="relative">
                 <button
@@ -139,7 +127,7 @@ export default function CalculatorPage() {
                   onClick={() => toggleAppliance(item.name)}
                   className={cn(
                     'flex w-full flex-col items-center gap-1 rounded-xl border p-2 transition-colors active:scale-95',
-                    count > 0
+                    selected
                       ? 'border-burgundy bg-burgundy-tint'
                       : 'border-line bg-white hover:border-burgundy/50'
                   )}
@@ -154,15 +142,13 @@ export default function CalculatorPage() {
                     {item.name}
                   </span>
                 </button>
-                {count > 0 && (
-                  <button
-                    type="button"
-                    onClick={() => decrement(item.name)}
-                    aria-label={`Reduce ${item.name}`}
-                    className="absolute -right-1 -top-1 grid h-6 w-6 place-items-center rounded-full bg-burgundy text-[11px] font-bold text-white shadow-card"
+                {selected && (
+                  <span
+                    aria-hidden
+                    className="absolute -right-1 -top-1 grid h-5 w-5 place-items-center rounded-full bg-burgundy text-white shadow-card"
                   >
-                    {count}
-                  </button>
+                    <Check size={12} strokeWidth={3} />
+                  </span>
                 )}
               </div>
             )
