@@ -47,14 +47,11 @@ export default function CalculatorPage() {
   const countFor = (name: string) =>
     rows.filter(row => row.name === name).reduce((sum, row) => sum + num(row.quantity), 0)
 
-  const addAppliance = (name: string) => {
+  const toggleAppliance = (name: string) => {
     const preset = APPLIANCES.find(item => item.name === name)
     setRows(prev => {
-      const existing = prev.find(row => row.name === name)
-      if (existing) {
-        return prev.map(row =>
-          row.id === existing.id ? { ...row, quantity: String(num(row.quantity) + 1) } : row
-        )
+      if (prev.some(row => row.name === name)) {
+        return prev.filter(row => row.name !== name)
       }
       return [
         ...prev,
@@ -139,7 +136,7 @@ export default function CalculatorPage() {
               <div key={item.name} className="relative">
                 <button
                   type="button"
-                  onClick={() => addAppliance(item.name)}
+                  onClick={() => toggleAppliance(item.name)}
                   className={cn(
                     'flex w-full flex-col items-center gap-1 rounded-xl border p-2 transition-colors active:scale-95',
                     count > 0
