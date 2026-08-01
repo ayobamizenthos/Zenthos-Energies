@@ -69,15 +69,17 @@ function strikeBell(startOffset: number, fundamental: number, gain: number) {
     osc.frequency.value = fundamental * ratio
     amp.gain.setValueAtTime(0.0001, start)
     amp.gain.linearRampToValueAtTime(gain * partialGains[i], start + 0.004)
-    amp.gain.exponentialRampToValueAtTime(0.0001, start + 0.9)
+    amp.gain.exponentialRampToValueAtTime(0.0001, start + 1.1)
     osc.connect(amp)
     amp.connect(ac.destination)
     osc.start(start)
-    osc.stop(start + 0.95)
+    osc.stop(start + 1.15)
   })
 }
 
 export function playNotification() {
-  strikeBell(0, 880, 0.32)
-  strikeBell(0.2, 1174.66, 0.28)
+  strikeBell(0, 880, 0.55)
+  strikeBell(0.22, 1174.66, 0.5)
+  strikeBell(0.6, 880, 0.55)
+  strikeBell(0.82, 1174.66, 0.5)
 }
