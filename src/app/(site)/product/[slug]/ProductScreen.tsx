@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { useNavigate, useParams } from '@/lib/router'
 import { Heart, Minus, Plus, ChevronDown } from 'lucide-react'
@@ -5,7 +7,7 @@ import { useProduct, useProducts } from '@/hooks/useProducts'
 import { formatNaira } from '@/lib/format'
 import { CABLE_PRICING } from '@/lib/constants'
 import type { CableGauge } from '@/lib/constants'
-import type { CablePricing } from '@/lib/types'
+import type { CablePricing, Product } from '@/lib/types'
 import { cn } from '@/lib/cn'
 import { Button } from '@/components/ui/Button'
 import { StarRating } from '@/components/ui/StarRating'
@@ -15,10 +17,11 @@ import { PageSpinner } from '@/components/ui/PageSpinner'
 import { useCart } from '@/stores/cart'
 import { useWishlist } from '@/stores/wishlist'
 
-export default function ProductPage() {
+export default function ProductPage({ initialProduct }: { initialProduct?: Product }) {
   const { slug } = useParams()
   const navigate = useNavigate()
-  const { product, loading } = useProduct(slug)
+  const { product: fetched, loading } = useProduct(slug)
+  const product = fetched ?? initialProduct ?? null
   const { products: sameCategory } = useProducts({ category: product?.category, sort: 'rating' })
   const { products: cables } = useProducts({ category: 'solar-cables' })
   const { products: panels } = useProducts({ category: 'solar-panels', sort: 'rating' })
@@ -32,7 +35,7 @@ export default function ProductPage() {
   const [descOpen, setDescOpen] = useState(false)
   const [added, setAdded] = useState(false)
 
-  if (loading) return <PageSpinner />
+  if (loading && !initialProduct) return <PageSpinner />
   if (!product) return <p className="py-16 text-center">Product not found.</p>
 
   const isCable = product.cable_pricing != null
