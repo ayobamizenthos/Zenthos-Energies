@@ -22,8 +22,8 @@ function resolveKey(value: unknown): string {
   return trimmed.startsWith('ey') && trimmed.length > 40 ? trimmed : DEFAULT_ANON_KEY
 }
 
-const url = resolveUrl(import.meta.env.VITE_SUPABASE_URL)
-const anonKey = resolveKey(import.meta.env.VITE_SUPABASE_ANON_KEY)
+const url = resolveUrl(process.env.NEXT_PUBLIC_SUPABASE_URL)
+const anonKey = resolveKey(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
 
 export const supabase = createClient<Database>(url, anonKey, {
   auth: {
