@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { useNavigate, useParams } from '@/lib/router'
 import { Heart, Minus, Plus, ChevronDown } from 'lucide-react'
 import { useProduct, useProducts } from '@/hooks/useProducts'
@@ -90,12 +91,17 @@ export default function ProductPage({ initialProduct }: { initialProduct?: Produ
     <div className="flex flex-col gap-6 animate-fade-in">
       <div className="grid gap-6 md:grid-cols-2">
         <div className="flex flex-col gap-3">
-          <div className="aspect-square overflow-hidden rounded-2xl border border-line bg-burgundy-tint/30">
-            <img
-              src={product.images[activeImage] ?? ''}
-              alt={product.name}
-              className="h-full w-full object-contain p-3"
-            />
+          <div className="relative aspect-square overflow-hidden rounded-2xl border border-line bg-burgundy-tint/30">
+            {product.images[activeImage] ? (
+              <Image
+                src={product.images[activeImage]}
+                alt={product.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+                className="object-contain p-3"
+              />
+            ) : null}
           </div>
           {product.images.length > 1 && (
             <div className="flex gap-2 overflow-x-auto no-scrollbar">
@@ -104,11 +110,11 @@ export default function ProductPage({ initialProduct }: { initialProduct?: Produ
                   key={i}
                   onClick={() => setActiveImage(i)}
                   className={cn(
-                    'h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2',
+                    'relative h-16 w-16 shrink-0 overflow-hidden rounded-lg border-2',
                     i === activeImage ? 'border-burgundy' : 'border-line'
                   )}
                 >
-                  <img src={img} alt="" className="h-full w-full object-contain" />
+                  <Image src={img} alt="" fill sizes="64px" className="object-contain" />
                 </button>
               ))}
             </div>

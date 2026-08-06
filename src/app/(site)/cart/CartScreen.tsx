@@ -45,6 +45,8 @@ export default function CartPage() {
               <img
                 src={item.image ?? ''}
                 alt={item.name}
+                width={80}
+                height={80}
                 className="h-20 w-20 shrink-0 rounded-xl object-cover"
               />
               <div className="flex flex-1 flex-col">

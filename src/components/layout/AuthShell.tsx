@@ -18,6 +18,8 @@ export function AuthShell({
             <img
               src="/zenthoslab-logo.png"
               alt="Zenthos Energies"
+              width={44}
+              height={44}
               className="h-11 w-11 object-contain brightness-0"
             />
             <span className="text-xl font-bold tracking-tight">Zenthos Energies</span>

@@ -34,6 +34,8 @@ export function Footer() {
               <img
                 src="/zenthoslab-logo.png"
                 alt="Zenthos Energies"
+                width={44}
+                height={44}
                 className="h-11 w-11 object-contain"
               />
               <span className="flex flex-col leading-none">

@@ -58,6 +58,8 @@ export default function AdminProducts() {
                 <img
                   src={product.images[0] ?? ''}
                   alt=""
+                  width={48}
+                  height={48}
                   className="h-12 w-12 shrink-0 rounded-lg object-contain"
                 />
                 <div className="min-w-0 flex-1">

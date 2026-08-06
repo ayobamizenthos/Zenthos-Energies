@@ -138,6 +138,8 @@ export default function CalculatorPage() {
                     src={item.icon}
                     alt={item.name}
                     loading="lazy"
+                    width={48}
+                    height={48}
                     className="h-10 w-10 object-contain sm:h-12 sm:w-12"
                   />
                   <span className="text-center text-[11px] font-medium leading-tight text-ink">
@@ -175,7 +177,13 @@ export default function CalculatorPage() {
             <div key={row.id} className="rounded-2xl border border-line bg-white p-3">
               <div className="mb-2 flex items-center gap-2">
                 {row.icon && (
-                  <img src={row.icon} alt="" className="h-8 w-8 shrink-0 object-contain" />
+                  <img
+                    src={row.icon}
+                    alt=""
+                    width={32}
+                    height={32}
+                    className="h-8 w-8 shrink-0 object-contain"
+                  />
                 )}
                 <input
                   value={row.name}

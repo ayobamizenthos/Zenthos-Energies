@@ -42,6 +42,8 @@ export function AdminChrome({ children }: { children: ReactNode }) {
           <img
             src="/zenthoslab-logo.png"
             alt="Zenthos Energies"
+            width={36}
+            height={36}
             className="h-9 w-9 shrink-0 object-contain brightness-0"
           />
           <span className="font-bold">Zenthos Admin</span>
