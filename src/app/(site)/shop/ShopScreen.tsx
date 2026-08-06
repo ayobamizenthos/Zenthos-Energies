@@ -124,7 +124,7 @@ function FilterChip({
     <button
       onClick={onClick}
       className={cn(
-        'shrink-0 rounded-full border px-4 py-1.5 text-body font-medium transition-colors',
+        'inline-flex min-h-[44px] shrink-0 items-center rounded-full border px-4 text-body font-medium transition-colors',
         active ? 'border-burgundy bg-burgundy text-white' : 'border-line bg-white text-ink'
       )}
     >

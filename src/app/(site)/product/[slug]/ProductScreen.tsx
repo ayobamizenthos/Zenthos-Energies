@@ -142,7 +142,7 @@ export default function ProductPage({ initialProduct }: { initialProduct?: Produ
               </p>
               <button
                 onClick={() => setDescOpen(v => !v)}
-                className="mt-1 flex items-center gap-1 text-body font-semibold text-burgundy"
+                className="mt-1 flex min-h-[44px] items-center gap-1 text-body font-semibold text-burgundy"
               >
                 {descOpen ? 'Show less' : 'Read more'}
                 <ChevronDown
@@ -279,7 +279,10 @@ export default function ProductPage({ initialProduct }: { initialProduct?: Produ
         </section>
       )}
 
-      <button onClick={() => navigate(-1)} className="text-body font-semibold text-burgundy">
+      <button
+        onClick={() => navigate(-1)}
+        className="inline-flex min-h-[44px] w-fit items-center text-body font-semibold text-burgundy"
+      >
         ← Back
       </button>
     </div>

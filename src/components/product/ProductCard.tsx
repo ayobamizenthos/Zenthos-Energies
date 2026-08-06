@@ -47,7 +47,7 @@ export function ProductCard({ product }: { product: Product }) {
         type="button"
         onClick={() => toggle(product.id)}
         aria-label={saved ? 'Remove from saved' : 'Save for later'}
-        className="absolute right-2 top-2 z-10 grid h-7 w-7 place-items-center transition-transform active:scale-90"
+        className="absolute right-0 top-0 z-10 grid h-11 w-11 place-items-center transition-transform active:scale-90"
       >
         <Heart
           size={18}

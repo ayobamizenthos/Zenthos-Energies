@@ -39,7 +39,7 @@ export default function HomePage() {
           <h2 className="text-lg font-bold">Best Sellers</h2>
           <Link
             to="/shop"
-            className="flex items-center gap-1 text-body font-semibold text-burgundy"
+            className="-my-2 flex min-h-[44px] items-center gap-1 text-body font-semibold text-burgundy"
           >
             View all <ArrowRight size={16} />
           </Link>
