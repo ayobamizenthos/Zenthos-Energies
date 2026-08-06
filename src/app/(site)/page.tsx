@@ -6,5 +6,12 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <HomeScreen />
+  return (
+    <>
+      <h1 className="sr-only">
+        Zenthos Energies — solar inverters, lithium batteries, panels and solar generators in Lagos
+      </h1>
+      <HomeScreen />
+    </>
+  )
 }
