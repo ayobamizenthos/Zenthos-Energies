@@ -1,5 +1,8 @@
+'use client'
+
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Image from 'next/image'
+import { Link } from '@/lib/router'
 import { Heart, Minus, Plus, SlidersHorizontal } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { cartItemKey } from '@/lib/types'
@@ -44,7 +47,7 @@ export function ProductCard({ product }: { product: Product }) {
         type="button"
         onClick={() => toggle(product.id)}
         aria-label={saved ? 'Remove from saved' : 'Save for later'}
-        className="absolute right-2 top-2 z-10 grid h-7 w-7 place-items-center transition-transform active:scale-90"
+        className="absolute right-0 top-0 z-10 grid h-11 w-11 place-items-center transition-transform active:scale-90"
       >
         <Heart
           size={18}
@@ -58,22 +61,28 @@ export function ProductCard({ product }: { product: Product }) {
       <Link to={`/product/${product.slug}`} className="block">
         <div
           className={cn(
-            'aspect-square overflow-hidden p-2 transition-colors',
+            'relative aspect-square overflow-hidden transition-colors',
             imageLoaded ? 'bg-white' : 'animate-pulse bg-line/50'
           )}
         >
-          <img
-            src={product.images[0] ?? ''}
-            alt={product.name}
-            loading="lazy"
-            decoding="async"
-            onLoad={() => setImageLoaded(true)}
-            onError={() => setImageLoaded(true)}
-            className={cn(
-              'h-full w-full object-contain transition-all duration-300 group-hover:scale-105',
-              imageLoaded ? 'opacity-100' : 'opacity-0'
-            )}
-          />
+          {product.images[0] ? (
+            <Image
+              src={product.images[0]}
+              alt={product.name}
+              fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)}
+              className={cn(
+                'object-contain p-2 transition-all duration-300 group-hover:scale-105',
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              )}
+            />
+          ) : (
+            <div className="grid h-full w-full place-items-center p-2 text-body text-ink-muted">
+              No image
+            </div>
+          )}
         </div>
       </Link>
 

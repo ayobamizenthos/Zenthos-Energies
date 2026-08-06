@@ -19,3 +19,9 @@ supabase/.branches
 
 # Internal planning docs (not part of the shipped product)
 Zenthos_Energies_PRD_PRODUCTION.md
+
+.next
+next-env.d.ts
+
+public/sw.js
+public/swe-worker-*.js

@@ -42,7 +42,8 @@ export async function payWithPaystack(options: {
   orderId: string
 }): Promise<{ reference: string } | null> {
   const key =
-    import.meta.env.VITE_PAYSTACK_PUBLIC_KEY ?? 'pk_live_67f911cc59811958c639c10f21407dd8229b20b7'
+    process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY ??
+    'pk_live_67f911cc59811958c639c10f21407dd8229b20b7'
 
   await loadScript()
   if (!window.PaystackPop) throw new Error('Unable to load Paystack')

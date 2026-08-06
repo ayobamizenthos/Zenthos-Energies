@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Calculator, Truck, Wrench, Zap } from 'lucide-react'
 import { STORE } from '@/lib/constants'
 import { formatNaira } from '@/lib/format'

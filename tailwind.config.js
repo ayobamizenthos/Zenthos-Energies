@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+const config = {
+  content: ['./src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -19,7 +19,15 @@ export default {
         danger: '#C62828',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: [
+          'var(--font-inter)',
+          'Inter',
+          'system-ui',
+          '-apple-system',
+          'Segoe UI',
+          'Roboto',
+          'sans-serif',
+        ],
       },
       fontSize: {
         label: ['0.75rem', { lineHeight: '1rem' }],
@@ -55,3 +63,5 @@ export default {
   },
   plugins: [],
 }
+
+export default config

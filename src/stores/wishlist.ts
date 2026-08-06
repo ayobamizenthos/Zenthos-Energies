@@ -23,6 +23,6 @@ export const useWishlist = create<WishlistState>()(
       remove: productId => set(state => ({ ids: state.ids.filter(id => id !== productId) })),
       clear: () => set({ ids: [] }),
     }),
-    { name: 'zenthos-wishlist' }
+    { name: 'zenthos-wishlist', skipHydration: true }
   )
 )

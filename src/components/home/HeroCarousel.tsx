@@ -1,5 +1,8 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import Image from 'next/image'
+import { Link } from '@/lib/router'
 import { ArrowRight } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { formatNaira } from '@/lib/format'
@@ -64,13 +67,18 @@ export function HeroCarousel({ products }: { products: Product[] }) {
           </Link>
         </div>
 
-        <div className="h-36 w-36 shrink-0 overflow-hidden rounded-2xl bg-white shadow-xl ring-4 ring-white/10 sm:h-48 sm:w-48">
-          <img
-            key={current.id}
-            src={current.images[0] ?? ''}
-            alt={current.name}
-            className="h-full w-full animate-fade-in object-contain p-2"
-          />
+        <div className="relative h-36 w-36 shrink-0 overflow-hidden rounded-2xl bg-white shadow-xl ring-4 ring-white/10 sm:h-48 sm:w-48">
+          {current.images[0] ? (
+            <Image
+              key={current.id}
+              src={current.images[0]}
+              alt={current.name}
+              fill
+              sizes="192px"
+              priority
+              className="animate-fade-in object-contain p-2"
+            />
+          ) : null}
         </div>
       </div>
 

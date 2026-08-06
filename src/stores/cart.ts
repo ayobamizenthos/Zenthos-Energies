@@ -67,6 +67,6 @@ export const useCart = create<CartState>()(
 
       count: () => get().items.reduce((sum, i) => sum + (i.kind === 'product' ? i.quantity : 1), 0),
     }),
-    { name: 'zenthos-cart' }
+    { name: 'zenthos-cart', skipHydration: true }
   )
 )

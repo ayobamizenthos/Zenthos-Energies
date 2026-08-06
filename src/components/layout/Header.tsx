@@ -1,4 +1,5 @@
-import { Link, NavLink } from 'react-router-dom'
+import Image from 'next/image'
+import { Link, NavLink } from '@/lib/router'
 import { Bell } from 'lucide-react'
 import { useNotifications } from '@/hooks/useNotifications'
 import { useAuth } from '@/stores/auth'
@@ -20,9 +21,11 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-line bg-white/90 backdrop-blur">
       <div className="app-shell flex h-14 items-center justify-between gap-6">
         <Link to="/" className="flex shrink-0 items-center gap-2">
-          <img
+          <Image
             src="/zenthoslab-logo.png"
             alt="Zenthos Energies"
+            width={36}
+            height={36}
             className="h-9 w-9 shrink-0 object-contain brightness-0"
           />
           <span className="flex flex-col leading-none">
