@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useParams } from '@/lib/router'
 import { ArrowLeft, ImageUp, Loader2, Plus, X } from 'lucide-react'

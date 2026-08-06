@@ -18,13 +18,5 @@
     "paths": { "@/*": ["./src/*"] }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": [
-    "node_modules",
-    "supabase/functions",
-    "src/legacy-pages",
-    "vite.config.ts",
-    "src/main.tsx",
-    "src/sw.ts",
-    "src/App.tsx"
-  ]
+  "exclude": ["node_modules", "supabase/functions"]
 }

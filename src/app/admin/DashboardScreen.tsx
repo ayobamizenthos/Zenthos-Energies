@@ -1,3 +1,5 @@
+'use client'
+
 import { useMemo } from 'react'
 import { Link } from '@/lib/router'
 import { BarChart, Bar, ResponsiveContainer, XAxis, Tooltip, Cell } from 'recharts'
@@ -8,6 +10,7 @@ import type { OrderStatus } from '@/lib/constants'
 import { formatNaira, formatDate } from '@/lib/format'
 import { PageSpinner } from '@/components/ui/PageSpinner'
 import { cn } from '@/lib/cn'
+import { StatusPill } from '@/components/admin/StatusPill'
 
 export default function AdminDashboard() {
   const { orders, loading } = useAdminOrders('all')
@@ -158,23 +161,5 @@ function ChartTooltip({
       <p className="text-[11px] uppercase tracking-wide opacity-70">{label}</p>
       <p className="text-body font-bold">{formatNaira(payload[0].value)}</p>
     </div>
-  )
-}
-
-export function StatusPill({ status }: { status: OrderStatus }) {
-  const done = status === 'delivered' || status === 'completed'
-  return (
-    <span
-      className={cn(
-        'rounded-full px-2.5 py-0.5 text-label font-semibold',
-        status === 'pending'
-          ? 'bg-line text-ink-muted'
-          : done
-            ? 'bg-success/10 text-success'
-            : 'bg-burgundy-tint text-burgundy'
-      )}
-    >
-      {ORDER_STATUS_META[status].label}
-    </span>
   )
 }

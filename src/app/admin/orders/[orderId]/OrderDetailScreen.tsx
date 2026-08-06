@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { Link, useParams } from '@/lib/router'
 import { ArrowLeft, BadgeCheck, Package, Truck, CheckCircle2, Flag, FileText } from 'lucide-react'
@@ -11,7 +13,7 @@ import type { CartItem } from '@/lib/types'
 import { cartItemTotal } from '@/lib/types'
 import { PageSpinner } from '@/components/ui/PageSpinner'
 import { Button } from '@/components/ui/Button'
-import { StatusPill } from './AdminDashboard'
+import { StatusPill } from '@/components/admin/StatusPill'
 
 export default function AdminOrderDetail() {
   const { orderId } = useParams()

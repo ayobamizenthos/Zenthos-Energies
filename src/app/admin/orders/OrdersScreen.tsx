@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { Link } from '@/lib/router'
 import { useAdminOrders } from '@/hooks/useAdmin'
@@ -5,7 +7,7 @@ import { ORDER_STATUSES, ORDER_STATUS_META } from '@/lib/constants'
 import type { OrderStatus } from '@/lib/constants'
 import { formatDate, formatNaira } from '@/lib/format'
 import { PageSpinner } from '@/components/ui/PageSpinner'
-import { StatusPill } from './AdminDashboard'
+import { StatusPill } from '@/components/admin/StatusPill'
 import { cn } from '@/lib/cn'
 
 type Filter = OrderStatus | 'all'

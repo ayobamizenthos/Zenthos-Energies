@@ -1,4 +1,7 @@
-import { NavLink, Outlet, useNavigate } from '@/lib/router'
+'use client'
+
+import type { ReactNode } from 'react'
+import { NavLink, useNavigate } from '@/lib/router'
 import {
   LayoutDashboard,
   Package,
@@ -23,7 +26,7 @@ const links: { to: string; label: string; icon: LucideIcon; end?: boolean }[] = 
   { to: '/admin/settings', label: 'Settings', icon: Settings },
 ]
 
-export default function AdminLayout() {
+export function AdminChrome({ children }: { children: ReactNode }) {
   const navigate = useNavigate()
   const { signOut } = useAuth()
 
@@ -79,9 +82,7 @@ export default function AdminLayout() {
 
       <div className="flex-1 md:pl-60">
         <MobileTabBar />
-        <main className="app-shell py-6 pb-24 md:pb-6">
-          <Outlet />
-        </main>
+        <main className="app-shell py-6 pb-24 md:pb-6">{children}</main>
       </div>
       <PushOptIn />
     </div>

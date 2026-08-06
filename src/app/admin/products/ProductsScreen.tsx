@@ -1,3 +1,5 @@
+'use client'
+
 import { Link } from '@/lib/router'
 import { Pencil, Plus, Star, Trash2 } from 'lucide-react'
 import { useAdminProducts } from '@/hooks/useAdmin'
