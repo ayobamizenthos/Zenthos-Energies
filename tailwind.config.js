@@ -5,10 +5,10 @@ const config = {
     extend: {
       colors: {
         burgundy: {
-          DEFAULT: '#8B1C3F',
-          bright: '#A01850',
-          dark: '#6E1531',
-          tint: '#F7EEF1',
+          DEFAULT: '#800020',
+          bright: '#A00028',
+          dark: '#660019',
+          tint: '#F6EBEE',
         },
         ink: {
           DEFAULT: '#1A1A1A',

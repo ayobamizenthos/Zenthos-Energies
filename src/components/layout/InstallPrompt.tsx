@@ -102,7 +102,7 @@ export function InstallPrompt() {
           <button
             type="button"
             onClick={() => void install()}
-            className="flex h-9 shrink-0 items-center rounded-full bg-[#800020] px-4 text-[13px] font-bold text-white transition-colors hover:bg-[#660019]"
+            className="flex h-9 shrink-0 items-center rounded-full bg-burgundy px-4 text-[13px] font-bold text-white transition-colors hover:bg-burgundy-dark"
           >
             Install
           </button>

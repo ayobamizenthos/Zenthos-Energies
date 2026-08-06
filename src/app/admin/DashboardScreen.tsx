@@ -88,7 +88,7 @@ export default function AdminDashboard() {
               <Tooltip cursor={{ fill: '#F7EEF1' }} content={<ChartTooltip />} />
               <Bar dataKey="total" radius={[6, 6, 0, 0]}>
                 {revenueByDay.map((_, i) => (
-                  <Cell key={i} fill="#8B1C3F" />
+                  <Cell key={i} fill="#800020" />
                 ))}
               </Bar>
             </BarChart>
