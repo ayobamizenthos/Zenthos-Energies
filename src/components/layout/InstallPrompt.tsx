@@ -1,61 +1,121 @@
+'use client'
+
 import { useEffect, useState } from 'react'
-import { Download, X } from 'lucide-react'
-import { Button } from '@/components/ui/Button'
+import Image from 'next/image'
+import { Share2, X } from 'lucide-react'
+
+const REPROMPT_AFTER_MS = 7 * 24 * 60 * 60 * 1000
+const MIN_VISITS = 2
+const DISMISS_KEY = 'zenthos-install-dismissed-at'
+const VISIT_KEY = 'zenthos-visit-count'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
 }
 
+function isIosSafari(): boolean {
+  const ua = window.navigator.userAgent
+  return /iPad|iPhone|iPod/.test(ua) && !/CriOS|FxiOS|EdgiOS/.test(ua)
+}
+
+function isStandalone(): boolean {
+  return (
+    window.matchMedia('(display-mode: standalone)').matches ||
+    (window.navigator as Navigator & { standalone?: boolean }).standalone === true
+  )
+}
+
+function isSuppressed(): boolean {
+  const at = Number(window.localStorage.getItem(DISMISS_KEY) || '0')
+  return at > 0 && Date.now() - at < REPROMPT_AFTER_MS
+}
+
 export function InstallPrompt() {
-  const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null)
-  const [snoozed, setSnoozed] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const [visits, setVisits] = useState(0)
+  const [suppressed, setSuppressed] = useState(false)
+  const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent | null>(null)
 
   useEffect(() => {
-    const handler = (event: Event) => {
+    const next = Number(window.localStorage.getItem(VISIT_KEY) || '0') + 1
+    window.localStorage.setItem(VISIT_KEY, String(next))
+    setVisits(next)
+    setSuppressed(isSuppressed())
+    setMounted(true)
+
+    const captureInstallPrompt = (event: Event) => {
       event.preventDefault()
-      setDeferred(event as BeforeInstallPromptEvent)
+      setInstallEvent(event as BeforeInstallPromptEvent)
     }
-    window.addEventListener('beforeinstallprompt', handler)
-    return () => window.removeEventListener('beforeinstallprompt', handler)
+    window.addEventListener('beforeinstallprompt', captureInstallPrompt)
+    return () => window.removeEventListener('beforeinstallprompt', captureInstallPrompt)
   }, [])
 
-  if (!deferred || snoozed) return null
+  if (!mounted) return null
+  if (suppressed) return null
+  if (isStandalone()) return null
+  if (visits < MIN_VISITS) return null
+
+  const showIosHint = isIosSafari()
+  if (!installEvent && !showIosHint) return null
+
+  const dismiss = () => {
+    window.localStorage.setItem(DISMISS_KEY, String(Date.now()))
+    setSuppressed(true)
+  }
 
   const install = async () => {
-    await deferred.prompt()
-    await deferred.userChoice
-    setDeferred(null)
+    if (!installEvent) return
+    await installEvent.prompt()
+    await installEvent.userChoice
+    setInstallEvent(null)
+    dismiss()
   }
 
   return (
-    <div className="fixed inset-x-3 bottom-40 z-50 mx-auto max-w-app animate-slide-up rounded-2xl border border-line bg-white p-4 shadow-pop md:bottom-6">
-      <button
-        type="button"
-        onClick={() => setSnoozed(true)}
-        aria-label="Dismiss"
-        className="absolute right-3 top-3 text-ink-muted"
-      >
-        <X size={18} />
-      </button>
-      <div className="flex items-start gap-3">
-        <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-burgundy text-white">
-          <Download size={20} />
+    <div className="animate-slide-up fixed inset-x-3 bottom-[calc(70px+env(safe-area-inset-bottom)+12px)] z-50 md:inset-x-auto md:bottom-6 md:left-6 md:max-w-md">
+      <div className="flex items-center gap-3 rounded-full border border-line bg-white/95 py-2 pl-3 pr-2 shadow-pop backdrop-blur-md">
+        <span className="shrink-0">
+          <Image
+            src="/zenthoslab-logo.png"
+            alt="Zenthos Energies"
+            width={28}
+            height={28}
+            className="h-7 w-7 object-contain brightness-0"
+          />
         </span>
-        <div className="flex-1">
-          <p className="font-semibold">Install Zenthos Energies</p>
-          <p className="text-body text-ink-muted">
-            Add the app to your home screen for faster, full-screen shopping.
+
+        {showIosHint ? (
+          <p className="flex min-w-0 flex-1 flex-wrap items-center gap-1 text-[13px] leading-snug text-ink">
+            Tap
+            <Share2 size={13} aria-hidden="true" className="shrink-0" />
+            then <span className="font-semibold">Add to Home Screen</span>
           </p>
-          <div className="mt-3 flex gap-2">
-            <Button size="sm" onClick={install}>
-              Install App
-            </Button>
-            <Button size="sm" variant="ghost" onClick={() => setSnoozed(true)}>
-              Not now
-            </Button>
-          </div>
-        </div>
+        ) : (
+          <p className="min-w-0 flex-1 truncate text-[13px] font-medium text-ink">
+            Install the Zenthos app
+          </p>
+        )}
+
+        {!showIosHint ? (
+          <button
+            type="button"
+            onClick={() => void install()}
+            className="flex h-9 shrink-0 items-center rounded-full bg-[#800020] px-4 text-[13px] font-bold text-white transition-colors hover:bg-[#660019]"
+          >
+            Install
+          </button>
+        ) : null}
+
+        <button
+          type="button"
+          onClick={dismiss}
+          aria-label="Dismiss install prompt"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-ink-muted transition-colors hover:bg-burgundy-tint hover:text-ink"
+        >
+          <X size={16} aria-hidden="true" />
+        </button>
       </div>
     </div>
   )
