@@ -19,6 +19,7 @@ export const metadata: Metadata = {
   },
   description: SITE.tagline,
   applicationName: SITE.name,
+  manifest: '/manifest.webmanifest',
   icons: {
     icon: [{ url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' }],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],

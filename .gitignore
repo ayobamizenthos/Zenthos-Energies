@@ -22,3 +22,6 @@ Zenthos_Energies_PRD_PRODUCTION.md
 
 .next
 next-env.d.ts
+
+public/sw.js
+public/swe-worker-*.js
