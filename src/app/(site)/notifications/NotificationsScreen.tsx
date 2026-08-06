@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect } from 'react'
 import { Link } from '@/lib/router'
 import { Bell, CheckCheck, Package, CreditCard, Truck, Wrench, ShoppingBag } from 'lucide-react'

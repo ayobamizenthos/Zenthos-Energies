@@ -1,3 +1,5 @@
+'use client'
+
 import { Link, useNavigate } from '@/lib/router'
 import {
   ChevronRight,

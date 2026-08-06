@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { Link, useParams, useSearchParams } from '@/lib/router'
 import { CheckCircle2, MessageCircle } from 'lucide-react'

@@ -1,5 +1,7 @@
+'use client'
+
 import { useState } from 'react'
-import { Link, useLocation, useNavigate } from '@/lib/router'
+import { Link, useNavigate, useSearchParams } from '@/lib/router'
 import { Eye, EyeOff } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/Button'
@@ -7,8 +9,8 @@ import { AuthShell } from '@/components/layout/AuthShell'
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const location = useLocation()
-  const from = (location.state as { from?: string } | null)?.from ?? '/'
+  const [params] = useSearchParams()
+  const from = params.get('from') || '/'
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -75,7 +77,10 @@ export default function LoginPage() {
 
       <p className="mt-5 text-center text-body text-ink-muted">
         Don't have an account?{' '}
-        <Link to="/signup" state={{ from }} className="font-semibold text-burgundy">
+        <Link
+          to={`/signup?from=${encodeURIComponent(from)}`}
+          className="font-semibold text-burgundy"
+        >
           Sign Up
         </Link>
       </p>

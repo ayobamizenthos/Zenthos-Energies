@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from '@/lib/router'
 import { Building2, Check, Copy, CreditCard, ImageUp, Loader2, X, Zap } from 'lucide-react'
