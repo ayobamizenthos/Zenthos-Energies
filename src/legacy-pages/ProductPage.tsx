@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from '@/lib/router'
 import { Heart, Minus, Plus, ChevronDown } from 'lucide-react'
 import { useProduct, useProducts } from '@/hooks/useProducts'
 import { formatNaira } from '@/lib/format'

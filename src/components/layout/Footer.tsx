@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Mail, MessageCircle } from 'lucide-react'
 import { useStoreSettings } from '@/hooks/useStoreSettings'
 import { useSupportSheet } from '@/stores/support'

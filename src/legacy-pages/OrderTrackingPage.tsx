@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from '@/lib/router'
 import { CheckCircle2, MessageCircle } from 'lucide-react'
 import { useOrder } from '@/hooks/useOrders'
 import { useSupportSheet } from '@/stores/support'

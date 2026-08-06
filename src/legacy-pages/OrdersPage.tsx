@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Package } from 'lucide-react'
 import { useOrders } from '@/hooks/useOrders'
 import { ORDER_STATUS_META } from '@/lib/constants'

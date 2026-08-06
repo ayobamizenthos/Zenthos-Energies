@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from '@/lib/router'
 import { Bell, X } from 'lucide-react'
 import { useToasts } from '@/stores/toast'
 

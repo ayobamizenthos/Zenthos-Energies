@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Bell, CheckCheck, Package, CreditCard, Truck, Wrench, ShoppingBag } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useNotifications } from '@/hooks/useNotifications'

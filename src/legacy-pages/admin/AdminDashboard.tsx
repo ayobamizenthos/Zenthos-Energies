@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { BarChart, Bar, ResponsiveContainer, XAxis, Tooltip, Cell } from 'recharts'
 import { TrendingUp, ShoppingBag, Package, Users } from 'lucide-react'
 import { useAdminOrders, useAdminProducts, useAdminCustomers } from '@/hooks/useAdmin'

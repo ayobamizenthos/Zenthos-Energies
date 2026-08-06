@@ -1,5 +1,7 @@
+'use client'
+
 import { useMemo, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { useSearchParams } from '@/lib/router'
 import { Search, SlidersHorizontal, X } from 'lucide-react'
 import { useProducts } from '@/hooks/useProducts'
 import type { ProductQuery } from '@/hooks/useProducts'
@@ -47,6 +49,7 @@ export default function ShopPage() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Search solar products…"
+            aria-label="Search solar products"
             className="h-11 w-full rounded-xl border border-line bg-white pl-10 pr-3 text-body outline-none focus:border-burgundy"
           />
         </div>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from '@/lib/router'
 import { Building2, Check, Copy, CreditCard, ImageUp, Loader2, X, Zap } from 'lucide-react'
 import { useCart } from '@/stores/cart'
 import { useAuth } from '@/stores/auth'

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Pencil, Plus, Star, Trash2 } from 'lucide-react'
 import { useAdminProducts } from '@/hooks/useAdmin'
 import { useCategories, categoryLabel } from '@/hooks/useCategories'

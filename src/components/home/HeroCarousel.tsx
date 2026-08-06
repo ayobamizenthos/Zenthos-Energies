@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { ArrowRight } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { formatNaira } from '@/lib/format'

@@ -1,5 +1,7 @@
+'use client'
+
 import { useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Check, MessageCircle, Minus, Plus, Trash2, Zap } from 'lucide-react'
 import { computeRecommendation, recommendProducts, type ApplianceLoad } from '@/lib/solar'
 import { APPLIANCES } from '@/lib/appliances'

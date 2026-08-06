@@ -1,4 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom'
+'use client'
+
+import { Link, useNavigate } from '@/lib/router'
 import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react'
 import { useCart } from '@/stores/cart'
 import { cartItemKey } from '@/lib/types'
@@ -29,11 +31,7 @@ export default function CartPage() {
     )
   }
 
-  const checkout = () =>
-    navigate(
-      session ? '/checkout' : '/login',
-      session ? undefined : { state: { from: '/checkout' } }
-    )
+  const checkout = () => navigate(session ? '/checkout' : '/login?from=/checkout')
 
   return (
     <div className="flex flex-col gap-4">

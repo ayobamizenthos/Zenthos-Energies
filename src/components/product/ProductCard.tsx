@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { Heart, Minus, Plus, SlidersHorizontal } from 'lucide-react'
 import type { Product } from '@/lib/types'
 import { cartItemKey } from '@/lib/types'

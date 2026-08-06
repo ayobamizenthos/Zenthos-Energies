@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from '@/lib/router'
 import { ArrowLeft, ImageUp, Loader2, Plus, X } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { useCategories } from '@/hooks/useCategories'

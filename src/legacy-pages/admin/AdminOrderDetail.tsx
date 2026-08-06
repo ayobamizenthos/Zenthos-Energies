@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams } from '@/lib/router'
 import { ArrowLeft, BadgeCheck, Package, Truck, CheckCircle2, Flag, FileText } from 'lucide-react'
 import { useOrder } from '@/hooks/useOrders'
 import { updateOrderStatus, updatePaymentStatus } from '@/hooks/useAdmin'

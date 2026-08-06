@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '@/lib/router'
 import { useAdminOrders } from '@/hooks/useAdmin'
 import { ORDER_STATUSES, ORDER_STATUS_META } from '@/lib/constants'
 import type { OrderStatus } from '@/lib/constants'

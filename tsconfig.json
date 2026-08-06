@@ -21,6 +21,7 @@
   "exclude": [
     "node_modules",
     "supabase/functions",
+    "src/legacy-pages",
     "vite.config.ts",
     "src/main.tsx",
     "src/sw.ts",
