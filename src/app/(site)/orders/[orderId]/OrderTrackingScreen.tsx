@@ -45,7 +45,7 @@ export default function OrderTrackingPage() {
           <CheckCircle2 size={22} className="mt-0.5 shrink-0" />
           <div>
             <p className="font-semibold">Order placed successfully</p>
-            <p className="text-body">We'll notify you once your payment is confirmed.</p>
+            <p className="text-body">We&apos;ll notify you once your payment is confirmed.</p>
           </div>
         </div>
       )}

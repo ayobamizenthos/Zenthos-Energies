@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Link } from '@/lib/router'
 import type { ReactNode } from 'react'
 
@@ -15,7 +16,7 @@ export function AuthShell({
       <div className="app-shell flex flex-1 flex-col justify-center py-10">
         <div className="mx-auto w-full max-w-app">
           <Link to="/" className="mb-8 flex items-center justify-center gap-2">
-            <img
+            <Image
               src="/zenthoslab-logo.png"
               alt="Zenthos Energies"
               width={44}

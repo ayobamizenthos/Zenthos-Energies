@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Link, useNavigate } from '@/lib/router'
 import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react'
 import { useCart } from '@/stores/cart'
@@ -42,13 +43,17 @@ export default function CartPage() {
           const key = cartItemKey(item)
           return (
             <div key={key} className="flex gap-3 rounded-2xl border border-line bg-white p-3">
-              <img
-                src={item.image ?? ''}
-                alt={item.name}
-                width={80}
-                height={80}
-                className="h-20 w-20 shrink-0 rounded-xl object-cover"
-              />
+              {item.image ? (
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  width={80}
+                  height={80}
+                  className="h-20 w-20 shrink-0 rounded-xl object-cover"
+                />
+              ) : (
+                <div className="h-20 w-20 shrink-0 rounded-xl bg-line" />
+              )}
               <div className="flex flex-1 flex-col">
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-body font-semibold leading-tight">{item.name}</p>

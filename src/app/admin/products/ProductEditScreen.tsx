@@ -291,6 +291,8 @@ export default function AdminProductEdit() {
               key={i}
               className="relative aspect-square overflow-hidden rounded-xl border border-line"
             >
+              {/* Freshly uploaded preview URLs; plain img avoids the optimizer round trip on transient blobs */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={url} alt="" className="h-full w-full object-cover" />
               <button
                 type="button"

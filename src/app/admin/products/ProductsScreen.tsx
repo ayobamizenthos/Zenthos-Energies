@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { Link } from '@/lib/router'
 import { Pencil, Plus, Star, Trash2 } from 'lucide-react'
 import { useAdminProducts } from '@/hooks/useAdmin'
@@ -55,13 +56,17 @@ export default function AdminProducts() {
             const isCable = product.cable_pricing != null
             return (
               <div key={product.id} className="flex items-center gap-3 px-4 py-3">
-                <img
-                  src={product.images[0] ?? ''}
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 shrink-0 rounded-lg object-contain"
-                />
+                {product.images[0] ? (
+                  <Image
+                    src={product.images[0]}
+                    alt=""
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 shrink-0 rounded-lg object-contain"
+                  />
+                ) : (
+                  <div className="h-12 w-12 shrink-0 rounded-lg bg-line" />
+                )}
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-semibold">{product.name}</p>
                   <p className="truncate text-label text-ink-muted">

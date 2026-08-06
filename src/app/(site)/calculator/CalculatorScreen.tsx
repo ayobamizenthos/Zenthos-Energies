@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useRef, useState } from 'react'
+import Image from 'next/image'
 import { Link } from '@/lib/router'
 import { Check, MessageCircle, Minus, Plus, Trash2, Zap } from 'lucide-react'
 import { computeRecommendation, recommendProducts, type ApplianceLoad } from '@/lib/solar'
@@ -134,10 +135,9 @@ export default function CalculatorPage() {
                       : 'border-line bg-white hover:border-burgundy/50'
                   )}
                 >
-                  <img
+                  <Image
                     src={item.icon}
                     alt={item.name}
-                    loading="lazy"
                     width={48}
                     height={48}
                     className="h-10 w-10 object-contain sm:h-12 sm:w-12"
@@ -177,7 +177,7 @@ export default function CalculatorPage() {
             <div key={row.id} className="rounded-2xl border border-line bg-white p-3">
               <div className="mb-2 flex items-center gap-2">
                 {row.icon && (
-                  <img
+                  <Image
                     src={row.icon}
                     alt=""
                     width={32}

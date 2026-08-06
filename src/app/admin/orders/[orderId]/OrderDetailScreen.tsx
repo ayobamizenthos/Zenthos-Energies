@@ -144,6 +144,8 @@ export default function AdminOrderDetail() {
                   <p className="text-body text-ink-muted">Loading…</p>
                 ) : isImageProof ? (
                   <a href={proofUrl} target="_blank" rel="noreferrer">
+                    {/* Signed URL from the private payment-proofs bucket, of unknown dimensions; not a candidate for next/image */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={proofUrl}
                       alt="Proof of payment"

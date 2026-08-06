@@ -5,11 +5,8 @@ import { Link } from '@/lib/router'
 import { BarChart, Bar, ResponsiveContainer, XAxis, Tooltip, Cell } from 'recharts'
 import { TrendingUp, ShoppingBag, Package, Users } from 'lucide-react'
 import { useAdminOrders, useAdminProducts, useAdminCustomers } from '@/hooks/useAdmin'
-import { ORDER_STATUS_META } from '@/lib/constants'
-import type { OrderStatus } from '@/lib/constants'
 import { formatNaira, formatDate } from '@/lib/format'
 import { PageSpinner } from '@/components/ui/PageSpinner'
-import { cn } from '@/lib/cn'
 import { StatusPill } from '@/components/admin/StatusPill'
 
 export default function AdminDashboard() {

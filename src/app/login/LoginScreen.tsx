@@ -76,7 +76,7 @@ export default function LoginPage() {
       </form>
 
       <p className="mt-5 text-center text-body text-ink-muted">
-        Don't have an account?{' '}
+        Don&apos;t have an account?{' '}
         <Link
           to={`/signup?from=${encodeURIComponent(from)}`}
           className="font-semibold text-burgundy"

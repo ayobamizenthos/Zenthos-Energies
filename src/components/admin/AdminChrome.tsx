@@ -1,6 +1,7 @@
 'use client'
 
 import type { ReactNode } from 'react'
+import Image from 'next/image'
 import { NavLink, useNavigate } from '@/lib/router'
 import {
   LayoutDashboard,
@@ -39,7 +40,7 @@ export function AdminChrome({ children }: { children: ReactNode }) {
     <div className="flex min-h-dvh bg-burgundy-tint/20">
       <aside className="fixed inset-y-0 left-0 hidden w-60 flex-col border-r border-line bg-white md:flex">
         <div className="flex h-16 items-center gap-2 border-b border-line px-5">
-          <img
+          <Image
             src="/zenthoslab-logo.png"
             alt="Zenthos Energies"
             width={36}

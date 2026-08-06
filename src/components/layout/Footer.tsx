@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Link } from '@/lib/router'
 import { Mail, MessageCircle } from 'lucide-react'
 import { useStoreSettings } from '@/hooks/useStoreSettings'
@@ -31,7 +32,7 @@ export function Footer() {
         <div className="app-shell relative z-10 grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-10 pb-40 pt-20">
           <div className="flex flex-col gap-5">
             <div className="flex items-center gap-3">
-              <img
+              <Image
                 src="/zenthoslab-logo.png"
                 alt="Zenthos Energies"
                 width={44}
